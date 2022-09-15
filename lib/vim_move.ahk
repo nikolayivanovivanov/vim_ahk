@@ -134,21 +134,22 @@
           Send, {End}
         }
       }else if(key == "^"){
+        ; Selects the text in normal mode
         if(this.shift == 1){
-          if WinActive("ahk_group VimCaretMove"){
-            this.Home()
-            Send, ^{Right}
-            Send, ^{Left}
-          }else{
-            this.Home()
-          }
-        }else{
           if WinActive("ahk_group VimCaretMove"){
             Send, +{Home}
             Send, +^{Right}
             Send, +^{Left}
           }else{
             Send, +{Home}
+          }
+        }else{
+          if WinActive("ahk_group VimCaretMove"){
+            this.Home()
+            Send, ^{Right}
+            Send, ^{Left}
+          }else{
+            this.Home()
           }
         }
       ; Words
@@ -160,9 +161,16 @@
         }
       }else if(key == "e"){
         if(this.shift == 1){
-          Send, +^{Right}+^{Right}+{Left}
+          ;Send, +^{Right}+^{Right}+{Left}
+          If WinActive("ahk_exe Notepad++.exe"){
+	    ; Has correct implementation when selecting
+	    Send, +^{Right}
+          }else{
+	    Send, +{Right}+^{Right}+{Left}
+	  }
         }else{
-          Send, ^{Right}^{Right}{Left}
+          ;Send, ^{Right}^{Right}{Left}
+          Send, {Right}^{Right}{Left}
         }
       }else if(key == "b"){
         if(this.shift == 1){
