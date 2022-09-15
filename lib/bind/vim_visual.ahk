@@ -31,8 +31,9 @@ y::
 Return
 
 d::
-  Clipboard :=
-  Send, ^x
+  Send {Delete}
+;  Clipboard :=
+;  Send, ^x
   ClipWait, 1
   if(Vim.State.StrIsInCurrentVimMode("Line")){
     Vim.State.SetMode("Vim_Normal", 0, 0, 1)
@@ -62,6 +63,9 @@ c::
     Vim.State.SetMode("Insert", 0, 0, 0)
   }
 Return
+o::MsgBox "Not supported"
+>::MsgBox "Not supported"
+<::MsgBox "Not supported"
 
 *::
   bak := ClipboardAll

@@ -50,14 +50,16 @@
       this.Vim.State.SetMode("Vim_Normal")
       ydc_y := true
     }else if(this.Vim.State.StrIsInCurrentVimMode("ydc_d")){
-      Clipboard :=
-      Send, ^x
-      ClipWait, 1
+      Send {Delete}
+      ;Clipboard :=
+      ;Send, ^x
+      ;ClipWait, 1
       this.Vim.State.SetMode("Vim_Normal")
     }else if(this.Vim.State.StrIsInCurrentVimMode("ydc_c")){
-      Clipboard :=
-      Send, ^x
-      ClipWait, 1
+      Send {Delete}
+      ;Clipboard :=
+      ;Send, ^x
+      ;ClipWait, 1
       this.Vim.State.SetMode("Insert")
     }
     this.Vim.State.SetMode("", 0, 0)

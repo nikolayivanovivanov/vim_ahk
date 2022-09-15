@@ -1,7 +1,29 @@
 ﻿#If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Vim_Normal"))
 ; Undo/Redo
 u::Send,^z
++u::Send,^z
 ^r::Send,^y
+f::
+If WinActive("ahk_exe chrome.exe") || WinActive("ahk_exe firefox.exe")  || WinActive("ahk_exe msedge.exe") {
+;IfWinActive, ahk_exe chrome.exe || ahk_exe firefox.exe  || ahk_exe msedge.exe {
+  ; Vimium plugin
+  SendInput "f"
+  ; Switch to insert mode to enter the keys
+  Vim.State.SetMode("Insert")
+} Else {
+	MsgBox "Not supported"
+}
+
+Return
++f::MsgBox "Not supported"
+t::MsgBox "Not supported"
++t::MsgBox "Not supported"
+s::MsgBox "Not supported"
++s::MsgBox "Not supported"
+z::MsgBox "Not supported"
+,::MsgBox "Not supported"
+>::MsgBox "Not supported"
+<::MsgBox "Not supported"
 
 ; Combine lines
 +j:: Send, {End}{Space}{Delete}
@@ -23,16 +45,22 @@ Return
 
 +z::Vim.State.SetMode("Z")
 #If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Z"))
-+z::
-  Send, ^s
-  Send, !{F4}
-  Vim.State.SetMode("Vim_Normal")
-Return
+; Seems to be buggy. Could be because of my OSM QML keys
+Z::MsgBox "Not supported"
+;+z::MsgBox "Not supported"
+;+z::
+;  Send, ^s
+;  Send, !{F4}
+;  Vim.State.SetMode("Vim_Normal")
+;Return
 
-+q::
-  Send, !{F4}
-  Vim.State.SetMode("Vim_Normal")
-Return
+;+q::MsgBox "Not supported"
+Q::MsgBox "Not supported"
+; Seems to be buggy. Could be because of my OSM QML keys
+;+q::
+;  Send, !{F4}
+;  Vim.State.SetMode("Vim_Normal")
+;Return
 
 #If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Vim_Normal"))
 Space::Send, {Right}
