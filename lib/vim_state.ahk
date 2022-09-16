@@ -99,7 +99,7 @@
     }
     ; The keywait waits for esc to be released. If it doesn't detect a release
     ; within the time limit, sets ErrorLevel to 1.
-    KeyWait, Esc, T0.5
+    KeyWait, Esc, T0.25
     LongPress := ErrorLevel
     both := VimLongEscNormal && LongPress
     neither := !(VimLongEscNormal || LongPress)

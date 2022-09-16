@@ -63,7 +63,16 @@ c::
     Vim.State.SetMode("Insert", 0, 0, 0)
   }
 Return
-o::MsgBox "Not supported"
+;o::MsgBox "Not supported"
+o::
+  ; As viw is the only reliable selection, o is supposed to select the same,
+  ; but the cursor will be at the beginning of the word
+  ; Unselect current selection
+  Send {Left}
+  Send {LControl Down}{Right}{LControl Up}
+  ; Select word from right to left
+  Send, {Shift Down}{LControl Down}{Left}{Shift Up}{LControl Up}
+Return
 >::MsgBox "Not supported"
 <::MsgBox "Not supported"
 

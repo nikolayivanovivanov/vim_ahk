@@ -12,6 +12,16 @@
 
   SetIcon(Mode="", Interval=0){
     icon :=
+    
+    ; Flickers every Interval
+    if (Interval > 2500) {
+      if InStr(Mode, "Insert") || InStr(Mode, "Disabled") {
+        Progress, 9: Off
+      }else{
+        Progress, 9: b w300 Y0 CW5555CC CTFFFFFF zh0 ,, VimMode, AutoHotKeyVimMode
+      }
+    }
+
     if (Interval == 0){
       icon := this.icons["Default"]
     }else if InStr(Mode, "Normal"){
